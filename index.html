@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stolen Potato - Tienda</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+</head>
+<body>
+    <header>
+        <h1>🥔 Stolen Potato 🥔</h1>
+        <div class="stolen-potato-animation" aria-hidden="true"></div>
+    </header>
+
+    <main id="app">
+        <!-- Carrito de compras -->
+        <section class="cart-section" v-if="cart.items.length > 0">
+            <h2>🛒 Carrito ({{ cart.totalItems }})</h2>
+            <div class="cart-item" v-for="(item, index) in cart.items" :key="item.product.id">
+                <h3>{{ item.product.name }} ×{{ item.quantity }}</h3>
+                <p>Total: ${{ (item.product.price * item.quantity).toFixed(2) }}</p>
+                <button @click="removeFromCart(index)" type="button">🗑️ Eliminar</button>
+            </div>
+            <p class="total">Total a pagar: ${{ cart.total.toFixed(2) }}</p>
+        </section>
+
+        <!-- Productos -->
+        <section>
+            <h2>Nuestras Papas</h2>
+            <div class="grid">
+                <article class="product-card" v-for="product in products" :key="product.id">
+                    <h3>{{ product.name }}</h3>
+                    <p>💰 Precio: ${{ product.price.toFixed(2) }}</p>
+                    <div class="quantity-controls">
+                        <button @click="decreaseQuantity(product)" type="button">-</button>
+                        <input type="number" v-model.number="product.quantity" min="0">
+                        <button @click="increaseQuantity(product)" type="button">+</button>
+                    </div>
+                    <button @click="addToCart(product)" type="button" :disabled="product.quantity <= 0">
+                        {{ product.quantity > 0 ? 'Agregar al carrito' : 'Sin stock' }}
+                    </button>
+                </article>
+            </div>
+        </section>
+
+        <!-- Formulario de pedido -->
+        <section class="order-form">
+            <h2>📝 Realizar Pedido</h2>
+            <form @submit.prevent="sendOrder" novalidate>
+                <div class="form-group">
+                    <label for="name">Nombre completo:</label>
+                    <input type="text" id="name" v-model.trim="order.name" required 
+                           aria-describedby="nameHelp">
+                    <small id="nameHelp">Ej: Juan Pérez</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Dirección de entrega:</label>
+                    <textarea id="address" v-model.trim="order.address" required rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Teléfono de contacto:</label>
+                    <input type="tel" id="phone" v-model.trim="order.phone" required
+                           pattern="[0-9]{10}" title="10 dígitos sin espacios">
+                </div>
+
+                <div class="form-group">
+                    <label for="payment">Forma de pago:</label>
+                    <select id="payment" v-model="order.payment" required>
+                        <option value="online">💳 Pago en línea</option>
+                        <option value="cash">💰 Pago contra entrega</option>
+                    </select>
+                </div>
+
+                <button type="submit" :disabled="cart.total === 0">
+                    🚀 {{ cart.total === 0 ? 'Agrega productos primero' : 'Enviar Pedido' }}
+                </button>
+            </form>
+
+            <div v-if="orderConfirmation" class="confirmation-message">
+                <p>✅ {{ orderConfirmation }}</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
