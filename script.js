@@ -84,6 +84,13 @@ createApp({
                     phone: '',
                     payment: 'online'
                 };
+
+                const message = `Hola, soy ${this.order.name}. Mi pedido es: 
+${this.cart.items.map(item => `${item.product.name} (×${item.quantity})`).join(', ')}
+Total: $${this.cart.total.toFixed(2)}`;
+
+const whatsappLink = `https://wa.me/521234567890?text=${encodeURIComponent(message)}`;
+window.open(whatsappLink, '_blank');
                 
             } catch (error) {
                 console.error('Error al enviar el pedido:', error);
