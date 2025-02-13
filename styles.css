@@ -13,6 +13,23 @@ body {
     background-color: var(--background-color);
 }
 
+.whatsapp-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #25D366;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 25px;
+    text-decoration: none;
+    margin-left: 20px;
+    transition: transform 0.3s;
+}
+
+.whatsapp-link:hover {
+    transform: translateY(-2px);
+}
+
 header {
     text-align: center;
     margin-bottom: 2rem;
