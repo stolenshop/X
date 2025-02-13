@@ -6,10 +6,10 @@ createApp({
             products: [
                 { id: 1, name: 'Papa Dorada', price: 15.99, quantity: 0 },
                 { id: 2, name: 'Papa Violeta', price: 18.99, quantity: 0 },
-                { id: 3, name: 'Papa Negra', price: 12.99, quantity: 0 }
-                { id: 4, name: 'Papa Dorada', price: 15000.99, quantity: 0 },
-                { id: 5, name: 'Papa Violeta', price: 18000.99, quantity: 0 },
-                { id: 6, name: 'Papa Negra', price: 12000.99, quantity: 0 }
+                { id: 3, name: 'Papa Negra', price: 12.99, quantity: 0 },
+                { id: 4, name: 'Papa a', price: 15000.99, quantity: 0 },
+                { id: 5, name: 'Papa fucka', price: 18000.99, quantity: 0 },
+                { id: 6, name: 'Papa Ngra', price: 12000.99, quantity: 0 }
             ],
             cart: {
                 items: [],
