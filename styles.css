@@ -36,8 +36,8 @@ header {
 }
 
 .stolen-potato-animation {
-    width: 100px;
-    height: 100px;
+    width: 10px;
+    height: 10px;
     margin: 20px auto;
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%238B4513"/></svg>') no-repeat center;
     animation: rotate 3s linear infinite;
@@ -160,7 +160,7 @@ button:disabled {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background: #25D366;
+    background: #25D466;
     color: white !important;
     padding: 15px;
     border-radius: 50px;
@@ -174,5 +174,5 @@ button:disabled {
 }
 
 .whatsapp-button:hover {
-    transform: scale(1.05);
+    transform: scale(1.95);
 }
